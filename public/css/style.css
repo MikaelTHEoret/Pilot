@@ -1,0 +1,30 @@
+.window {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.taskbar {
+  height: 40px;
+}
+
+.chat-interface {
+  background-color: #f0f0f0;
+  padding: 20px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+/* New styles added */
+.new-class {
+  color: blue;
+}
+
+.updated-element {
+  font-size: 16px;
+}
+
+/* Responsive design */
+@media only screen and (max-width: 600px) {
+  .chat-interface {
+    height: 300px;
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/_head.ejs'); %>
+<body>
+  <%- include('partials/_header.ejs'); %>
+  <main role="main" class="container mt-4">
+    <div class="chat-interface">
+      <!-- Chat window content -->
+      <!-- New user message -->
+      <div class="message">
+        <span class="user">User:</span>
+        <span>Ask for coding help</span>
+      </div>
+      <!-- End of new user message -->
+
+      <!-- New system response -->
+      <div class="message">
+        <span class="system">System:</span>
+        <span>How can I assist you?</span>
+      </div>
+      <!-- End of new system response -->
+
+      <!-- New user message -->
+      <div class="message">
+        <span class="user">User:</span>
+        <span>debugging</span>
+      </div>
+      <!-- End of new user message -->
+
+      <!-- New user message -->
+      <div class="message">
+        <span class="user">User:</span>
+        <span>analyze code</span>
+      </div>
+      <!-- End of new user message -->
+
+      <!-- New system response -->
+      <div class="message">
+        <span class="system">System:</span>
+        <span>Code analysis in progress...</span>
+      </div>
+      <!-- End of new system response -->
+
+      <!-- New user message -->
+      <div class="message">
+        <span class="user">User:</span>
+        <span>Ask for help with AI code completion</span>
+      </div>
+      <!-- End of new user message -->
+
+      <!-- New system response -->
+      <div class="message">
+        <span class="system">System:</span>
+        <span>AI code completion suggestions loading...</span>
+      </div>
+      <!-- End of new system response -->
+
+      <!-- New user message -->
+      <div class="message">
+        <span class="user">User:</span>
+        <span>Discuss GPT-Builder feature</span>
+      </div>
+      <!-- End of new user message -->
+
+      <!-- New system response -->
+      <div class="message">
+        <span class="system">System:</span>
+        <span>GPT-Builder feature details available in the sidebar</span>
+      </div>
+      <!-- End of new system response -->
+    </div>
+  </main>
+  <%- include('partials/_taskbar.ejs'); %>
+  <%- include('partials/_footer.ejs'); %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
