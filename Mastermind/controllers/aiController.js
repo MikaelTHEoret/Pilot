@@ -8,7 +8,7 @@ const aiAssistCoding = (req, res) => {
         max_tokens: 150
     }, {
         headers: {
-            'Authorization': 'Bearer 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',
+            'Authorization': 'Bearer sk-**********************',
             'Content-Type': 'application/json'
         }
     })
