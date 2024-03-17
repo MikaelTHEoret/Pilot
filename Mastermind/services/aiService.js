@@ -9,7 +9,7 @@ const makeOpenAIRequest = async (requestData) => {
             max_tokens: requestData.max_tokens
         }, {
             headers: {
-                'Authorization': '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',
+                'Authorization': 'bearer *******************************',
                 'Content-Type': 'application/json'
             }
         });
