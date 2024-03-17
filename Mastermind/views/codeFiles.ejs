@@ -1,0 +1,49 @@
+<!-- \views\codeFiles.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code File Management</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add custom CSS file link here -->
+    <link rel="stylesheet" href="/css/codeStyle.css">
+</head>
+
+<body>
+    <h1>Code File Management</h1>
+
+    <div class="container">
+        <h3>Code Files</h3>
+        <ul>
+            <!-- Display list of code files here -->
+            <!-- Use EJS templating to dynamically show code files -->
+            <% codeFiles.forEach((file) => { %>
+                <li><%= file %></li>
+            <% }); %>
+        </ul>
+
+        <!-- Form for uploading code file -->
+        <form action="/code/save" method="post" enctype="multipart/form-data"> <!-- Updated action for file saving -->
+            <input type="file" name="codeFile" required>
+            <button type="submit">Upload Code File</button>
+        </form>
+
+        <!-- Form for running code file -->
+        <form action="/code/run" method="post"> <!-- Updated action for running code -->
+            <select name="selectedFile" required>
+                <!-- Dynamically populate select options with code files -->
+                <% codeFiles.forEach((file) => { %>
+                    <option value="<%= file %>"><%= file %></option>
+                <% }); %>
+            </select>
+            <button type="submit">Run Code File</button>
+        </form>
+    </div>
+</body>
+
+</html>

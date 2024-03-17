@@ -1,0 +1,29 @@
+<script>
+    const socket = new WebSocket('ws://localhost:3001');
+    
+    // WebSocket event listeners
+    socket.onopen = () => {
+        console.log('WebSocket connection established');
+    };
+    
+    socket.onmessage = (event) => {
+        const message = event.data;
+        console.log('Message received from server:', message);
+    };
+    
+    socket.onerror = (error) => {
+        console.error('WebSocket error:', error.message, error.stack);
+        // Add code here for error handling
+    };
+
+    // WebSocket error event listener
+    socket.onclose = (event) => {
+        console.error('WebSocket connection closed unexpectedly:', event.code, event.reason);
+        // Add code here for handling unexpected WebSocket closure
+    };
+
+    // Additional WebSocket error handling
+    socket.addEventListener('error', (event) => {
+        console.error('WebSocket encountered an error:', event.message, event.error);
+    });
+</script>
