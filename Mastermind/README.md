@@ -100,37 +100,26 @@ The app is a web application using Node.js with Express framework. It integrates
 
 Copyright © 2024.
 
-Mastermind Project Guide Map
+Enhanced Mastermind Project Guide Map with Critical Code Information
 Root Directory: Mastermind/
-README.md: Provides an overview of the project, including setup instructions, dependencies, and general information.
-app.js: The entry point for the application. Initializes the app and sets up middleware.
-server.js: Configures and starts the web server, listening for requests.
+app.js: Initializes the Express application and middleware.
+Uses express.json() for body parsing.
+Registers routes:
+/welcome using welcomeRouter.
+Error handling routes through errorRoutes.
+Includes a general error handling middleware.
+server.js: Configures and starts the server.
+Sets up database connection with mongoose to process.env.DATABASE_URL.
+Configures session handling with express-session and MongoStore, secured with process.env.SESSION_SECRET.
+Uses ejs as the view engine and serves static files from the public directory.
+Includes route handling for authentication (authRoutes) and a base route (/) rendering the index view.
+Implements custom middleware to track session views and output session creation/access times.
+Error handling for server errors and unhandled application errors.
+Listens on process.env.PORT or 3001.
 Directories:
-controllers/: Contains logic for handling requests and responses.
-aiAssistCoding.js: Handles AI-assisted coding features.
-aiController.js: Manages AI-related operations.
-codeController.js: Facilitates code management and operations.
-dist/: The distribution directory, typically used for storing compiled or build files.
-models/: Defines data models and schemas.
-User.js: Describes the user model and its schema.
-public/: Holds static files accessible by the public.
-css/: Contains CSS stylesheets for the application.
-codeStyle.css: Specific styles related to code presentation.
-style.css: General stylesheet for the application.
-routes/: Organizes the application's routes and endpoints.
-services/: Implements application logic and services, such as data processing and external API calls.
-src/: Source files for the application, typically including scripts and assets that require compilation or bundling.
-utils/: Utility functions and helpers used across the application.
-views/: Template files for rendering views.
-Configuration Files:
-nodemon.json: Configuration for Nodemon, a utility that monitors for any changes in your source and automatically restarts your server.
-package.json: Defines project metadata and dependencies.
-package-lock.json: Locks the versions of installed packages to ensure consistent installs across environments.
-tsconfig.json: Configuration settings for TypeScript.
-webpack.config.js: Configuration for Webpack, a module bundler.
-Miscellaneous:
-temp.txt: A temporary file, possibly used for testing or debug output.
-Functionalities:
-Each file and directory contributes to the overall functionality of the Mastermind project. The controllers manage application logic, models handle data structure, and the public directory serves static files like CSS for styling. Configuration files ensure consistency and control in development tools and environments.
-
-This guide map offers a holistic view of the Mastermind project's structure and its components, facilitating an efficient approach to debugging and feature development.
+controllers/:
+Key functionality is handling specific application logic tied to routes.
+models/:
+User.js: Defines the schema for user data, critical for authentication and user management.
+public/css/:
+Contains styles that are essential for the visual presentation of the application.
