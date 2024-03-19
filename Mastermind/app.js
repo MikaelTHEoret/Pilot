@@ -1,17 +1,20 @@
 const express = require('express');
 const app = express();
-const http = require('http');
+const welcomeRouter = require('./routes/welcomeRouter');
+const errorRoutes = require('./routes/errorRoutes'); // Import the errorRoutes
 
-const PORT = 3001; 
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+// Define the route for handling the /welcome path
+app.use('/welcome', welcomeRouter);
 
-const server = http.createServer(app);
+// Include the errorRoutes for handling errors
+app.use(errorRoutes);
 
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Define a general error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
 });
 
 module.exports = app;

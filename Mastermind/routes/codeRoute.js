@@ -2,22 +2,18 @@ const express = require('express');
 const router = express.Router();
 const codeController = require('../controllers/codeController');
 
+// Define routes for code functionalities
 
-router.get('/', codeController.getCodeFiles);
+// Route to save code file
+router.post('/save', codeController.saveCodeFile); // Make sure saveCodeFile function is defined in the codeController
 
+// Route to run code file
+router.post('/run', codeController.runCodeFile); // Make sure runCodeFile function is defined in the codeController
 
-router.post('/save', codeController.saveCodeFile);
+// Route to delete code file
+router.delete('/delete', codeController.deleteCodeFile); // Make sure deleteCodeFile function is defined in the codeController
 
+// Route to get code files
+router.get('/files', codeController.getCodeFiles); // Make sure getCodeFiles function is defined in the codeController
 
-router.post('/run', codeController.runCodeFile);
-
-
-router.get('/create', codeController.createCodeFile); 
-router.get('/edit/:id', codeController.editCodeFile); 
-router.post('/update/:id', codeController.updateCodeFile); 
-router.post('/delete/:id', codeController.deleteCodeFile); 
-
-
-router.get('/open/:id', codeController.openCodeFile); 
-router.post('/save/:id', codeController.saveEditedCodeFile); 
 module.exports = router;
