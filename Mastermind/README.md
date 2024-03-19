@@ -1,31 +1,68 @@
 # Mastermind
 
 Mastermind/
+│
 ├── README.md
+│   └── Overview, setup instructions, and general project information.
+│
 ├── app.js
+│   └── Application entry point, initializing the app and middleware setup.
+│
+├── server.js
+│   └── Configures and starts the web server, handling requests.
+│
 ├── controllers/
 │   ├── aiAssistCoding.js
+│   │   └── Handles AI-assisted coding features.
 │   ├── aiController.js
-│   ├── codeController.js
+│   │   └── Manages AI-related operations.
+│   └── codeController.js
+│       └── Facilitates code management and operations.
+│
 ├── dist/
+│   └── Contains compiled or build files.
+│
 ├── models/
-│   ├── User.js
-├── nodemon.json
-├── package-lock.json
-├── package.json
+│   └── User.js
+│       └── Describes the user model and schema.
+│
 ├── public/
-│   ├── css/
+│   └── css/
 │       ├── codeStyle.css
-│       ├── style.css
+│       │   └── Styles related to code presentation.
+│       └── style.css
+│           └── General application stylesheet.
+│
 ├── routes/
-├── server.js
+│   └── Organizes application routes and endpoints.
+│
 ├── services/
+│   └── Implements application logic and services.
+│
 ├── src/
-├── temp.txt
-├── tsconfig.json
+│   └── Contains source files requiring compilation or bundling.
+│
 ├── utils/
+│   └── Utility functions and helpers.
+│
 ├── views/
+│   └── Template files for rendering views.
+│
+├── nodemon.json
+│   └── Nodemon configuration for automatic server restarts.
+│
+├── package.json
+│   └── Project metadata and dependencies.
+│
+├── package-lock.json
+│   └── Locked versions of installed packages.
+│
+├── tsconfig.json
+│   └── TypeScript configuration settings.
+│
 └── webpack.config.js
+    └── Webpack configuration for module bundling.
+
 
 
 
