@@ -78,7 +78,7 @@ eval("// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission 
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const express = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\nconst app = express();\nconst port = 3000;\n\n// Updated welcome message\nconsole.log('Welcome to Mastermind App!');\napp.get('/', (req, res) => {\n  res.send('Hello World!');\n});\napp.listen(port, () => {\n  console.log(`Server is running on port ${port}`);\n});\n\n//# sourceURL=webpack://mastermind/./src/index.js?");
+eval("//index.js\nconst express = __webpack_require__(/*! express */ \"./node_modules/express/index.js\");\nconst app = express();\nconst port = 3001;\n\n// Updated welcome message\nconsole.log('Welcome to Mastermind App!');\napp.get('/', (req, res) => {\n  res.send('Hello World!');\n});\napp.listen(port, () => {\n  console.log(`Server is running on port ${port}`);\n});\n\n//# sourceURL=webpack://mastermind/./src/index.js?");
 
 /***/ }),
 

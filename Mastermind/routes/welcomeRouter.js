@@ -1,25 +1,34 @@
+// welcomeRouter.js
+
 const express = require('express');
+const axios = require('axios');
 
 const welcomeRouter = express.Router();
 
-// Welcome route sending a message to the client
+// Route handler for GET /welcome
 welcomeRouter.get('/', (req, res) => {
-  try {
-    res.send('Welcome to Mastermind App!'); // Message to be sent to the client
-  } catch (error) {
-    console.error('Error in sending welcome message:', error); // Logging error message and trace in case of an error
-    res.status(500).send('Internal Server Error'); // Sending an internal server error response if an error occurs
-  }
+  res.send('Welcome to the welcome page!');
 });
 
-// Route to handle the /welcome route
-welcomeRouter.get('/welcome', (req, res) => {
-  try {
-    res.send('Welcome to Mastermind App!'); // Send a welcome message to the client when accessing /welcome
-  } catch (error) {
-    console.error('Error in sending welcome message:', error); // Log any error that occurs
-    res.status(500).send('Internal Server Error'); // Return an internal server error response if there's an error
+// Route handler for POST /welcome/ai-assist
+welcomeRouter.post('/ai-assist', (req, res) => {
+  const { inputText } = req.body;
+
+  if (!inputText) {
+    return res.status(400).send('Input text is required');
   }
+
+  // Make API request using Axios
+  axios.post('https://api.openai.com/v1/chat/completions', { inputText })
+    .then(response => {
+      // Handle successful response
+      res.json(response.data); // Send the response data back to the client
+    })
+    .catch(error => {
+      // Handle error
+      console.error('Error:', error);
+      res.status(500).send('An error occurred while processing your request');
+    });
 });
 
 module.exports = welcomeRouter;

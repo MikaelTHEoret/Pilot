@@ -1,8 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const aiController = require('../controllers/aiController');
-const axios = require('axios'); 
-
+const axios = require('axios');
 
 router.post('/ai-assist', (req, res) => {
     const { inputText } = req.body;
@@ -10,7 +9,6 @@ router.post('/ai-assist', (req, res) => {
         return res.status(400).send('Input text is required');
     }
 
-   
     axios.post('https://api.openai.com/v1/ai-assist', {
         input: inputText,
         model: 'gpt-3.5-turbo',
@@ -18,13 +16,12 @@ router.post('/ai-assist', (req, res) => {
         max_tokens: 150
     }, {
         headers: {
-            'Authorization': 'Bearer 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',
+            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
             'Content-Type': 'application/json'
         }
     })
     .then(response => {
-        const aiResponse = response.data;
-        res.status(200).json(aiResponse);
+        res.status(200).json(response.data);
     })
     .catch(error => {
         console.error('Error making AI request:', error); 
