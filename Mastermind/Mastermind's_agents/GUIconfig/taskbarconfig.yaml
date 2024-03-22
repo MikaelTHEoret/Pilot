@@ -1,0 +1,37 @@
+import os
+import yaml
+
+def load_modules_directories():
+    modules_directory = "modules"
+    available_directories = []
+    for directory in os.listdir(modules_directory):
+        if os.path.isdir(os.path.join(modules_directory, directory)):
+            available_directories.append(os.path.join(modules_directory, directory))
+    return available_directories
+
+def create_taskbar_config():
+    config = {
+        "taskbar": {
+            "position": "top",
+            "height": 30,
+            "color": "#333333",
+            "font_color": "#FFFFFF"
+        },
+        "tabs": [
+            {
+                "name": "Load",
+                "dropdown": [
+                    {
+                        "name": "Modules",
+                        "action": "load_modules",
+                        "directories": load_modules_directories()
+                    }
+                ]
+            }
+        ]
+    }
+
+    with open("taskbarconfig.yaml", "w") as file:
+        yaml.dump(config, file)
+
+create_taskbar_config()
