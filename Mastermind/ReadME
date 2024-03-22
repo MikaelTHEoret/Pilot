@@ -42,10 +42,6 @@ R: 📖{Readme}🔍🤝: A reminder to consistently reference and align with the
 This refined formulation integrates the foundational context and principles for interpreting and executing tasks, reminding "Ultra Data Bot" to operate within the guidelines and expectations set forth in the readme document.
 
 "C:\Program Files\nodejs\node.exe" C:\Users\Mik\gpt-pilot\workspace\Mastermind\DirectoryMap.js
-├── chatBot/
-│   ├── db/
-│   └── index.js
-│   ├── models/
 └── chromaDb.ipynb
 └── chromadb.py
 ├── controllers/
@@ -132,6 +128,7 @@ This refined formulation integrates the foundational context and principles for 
 
 
 Process finished with exit code 0
+
 
 
 
