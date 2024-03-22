@@ -1,0 +1,69 @@
+/* CSS styling for code file management interface */
+
+/* Add styling for code file list */
+.code-file {
+    background-color: #1A1A1A; /* Dark background */
+    color: #CCCCCC; /* Light grey text */
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Add styling for code file actions */
+.code-actions {
+    margin-top: 10px;
+}
+
+/* Add styling for buttons in code file actions */
+.code-action-button {
+    background-color: #5CB85C; /* Dark green for action buttons */
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Add styling for code file input fields */
+.code-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #555555; /* Darker border for input */
+    background-color: #262626; /* Dark background for input */
+    color: #DDDDDD; /* Light text for input */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Add styling for code execution result */
+.code-result {
+    background-color: #474747; /* Dark background for code execution result */
+    color: #DDDDDD; /* Light grey text for code execution result */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #555555; /* Darker border for result container */
+    border-radius: 5px;
+}
+
+/* Add styling for error messages */
+.error-message {
+    background-color: #FF6347; /* Tomato red background for errors */
+    color: #fff; /* White text for error messages */
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+/* Add new styling for additional functionality */
+/* New styling for success messages */
+.success-message {
+    background-color: #5CB85C; /* Dark green background for success messages */
+    color: #fff; /* White text for success messages */
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}

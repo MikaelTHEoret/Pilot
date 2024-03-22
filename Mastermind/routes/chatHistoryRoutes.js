@@ -1,23 +1,32 @@
 const express = require('express');
+const { check, validationResult } = require('express-validator'); // For input validation
 const router = express.Router();
 const ChatHistory = require('../models/ChatHistory');
-const isAuthenticated = require('../middleware/isAuthenticated'); // Hypothetical authentication middleware
-
-// Define the ChatHistory model with automatic timestamp handling
-// Assuming this is done in '../models/ChatHistory.js'
+const isAuthenticated = require('../middleware/isAuthenticated');
 
 // Authentication middleware to ensure only authenticated users can access routes
 router.use(isAuthenticated);
 
+// Validation rules for posting and updating chat messages
+const messageValidationRules = [
+    check('userId').not().isEmpty().withMessage('UserId is required'),
+    check('message').not().isEmpty().withMessage('Message is required')
+];
+
+// Error handling middleware for validation errors
+const validate = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ success: false, errors: errors.array() });
+    }
+    next();
+};
+
 // POST request to store chat history
-router.post('/', async (req, res) => {
+router.post('/', messageValidationRules, validate, async (req, res) => {
     try {
         const { userId, message } = req.body;
-        // Validate input
-        if (!message || !userId) {
-            return res.status(400).json({ success: false, error: 'UserId and message are required' });
-        }
-        const newChat = new ChatHistory({ userId, message }); // Timestamps are handled by the model
+        const newChat = new ChatHistory({ userId, messages: [message] }); // Assume messages is an array
         await newChat.save();
         res.status(201).json({ success: true, data: newChat });
     } catch (error) {
@@ -38,14 +47,14 @@ router.get('/', async (req, res) => {
 });
 
 // PUT request to update a chat message
-router.put('/:id', async (req, res) => {
+router.put('/:id', messageValidationRules, validate, async (req, res) => {
     try {
         const { userId, message } = req.body;
-        // Validate input
-        if (!message || !userId) {
-            return res.status(400).json({ success: false, error: 'UserId and message are required for update' });
-        }
-        const updatedChat = await ChatHistory.findByIdAndUpdate(req.params.id, { userId, message }, { new: true });
+        const updatedChat = await ChatHistory.findByIdAndUpdate(
+            req.params.id,
+            { $push: { messages: message } }, // Assuming you want to add to the messages array
+            { new: true }
+        );
         if (!updatedChat) {
             return res.status(404).json({ success: false, error: 'Chat not found' });
         }
@@ -56,7 +65,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// (Optional) DELETE request to remove a chat message
+// DELETE request to remove a chat message (assuming removing the entire chat history for a user)
 router.delete('/:id', async (req, res) => {
     try {
         const deletedChat = await ChatHistory.findByIdAndDelete(req.params.id);
