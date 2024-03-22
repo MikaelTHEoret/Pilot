@@ -1,6 +1,6 @@
-# File: csrfProtection.js
-# Location: middleware/
-# Purpose: Setup CSRF protection middleware using csurf library.
+// File: csrfProtection.js
+// Location: middleware/
+// Purpose: Setup CSRF protection middleware using csurf library.
 
 const csrf = require('csurf');
 

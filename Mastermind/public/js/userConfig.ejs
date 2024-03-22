@@ -1,0 +1,41 @@
+<!-- File: views/userConfig.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Configuration - <%= username %></title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Ensure you have a CSS file with the styles you need -->
+    <!-- Include any other head elements such as meta tags, additional stylesheets, etc. -->
+</head>
+<body>
+    <h1>User Configuration for <%= username %></h1>
+    <% if (errors) { %>
+      <div class="alert alert-danger">
+        <% errors.forEach(function(error) { %>
+          <p><%= error %></p>
+        <% }); %>
+      </div>
+    <% } %>
+    <% if (successMessage) { %>
+      <div class="alert alert-success">
+        <p><%= successMessage %></p>
+      </div>
+    <% } %>
+
+    <form action="/api/user/config/save" method="post">
+        <!-- Include the CSRF token in the form -->
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+        <!-- Input fields for configuration options -->
+        <div class="form-group">
+            <label for="apiEndpoint">API Endpoint:</label>
+            <input type="text" id="apiEndpoint" name="apiEndpoint" value="<%= userConfig.apiEndpoint || '' %>" required>
+            <small class="form-text text-muted">Enter the endpoint URL for the API.</small>
+        </div>
+        <!-- Add more fields as needed with appropriate validation attributes and helper text -->
+
+        <button type="submit" class="btn btn-primary">Save Configuration</button>
+    </form>
+
+    <script src="/js/configValidation.js"></script> <!-- Client-side validation and feedback -->
+</body>
+</html>

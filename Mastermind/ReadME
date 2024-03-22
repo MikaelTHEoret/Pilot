@@ -48,23 +48,29 @@ This refined formulation integrates the foundational context and principles for 
 │   └── aiAssistCoding.js
 │   └── aiController.js
 │   └── codeController.js
+│   └── configController.js
+│   └── userController.js
 ├── databases/
 │   └── mongoDB.js
 └── DirectoryMap.js
 ├── dist/
 │   └── bundle.js
 │   └── index.html
-│   └── main.js
 └── index.html
+└── index.js
 └── logger.js
 ├── middleware/
+│   └── authGuard.js
 │   └── authMiddleware.js
 │   └── csrfProtection.js
 │   └── inputValidation.js
-│   └── RateLimiting.js
+│   └── isAuthenticated.js
+│   └── rateLimiting.js
 ├── models/
 │   └── ChatHistory.js
+│   └── project.js
 │   └── User.js
+│   └── userConfig.js
 └── multer.js
 └── nodemon.json
 └── package-lock.json
@@ -78,7 +84,8 @@ This refined formulation integrates the foundational context and principles for 
 │   │   └── Chatui.js
 │   │   └── codeFileManagerUI.js
 │   │   └── codeSnippetUI.js
-│   │   └── main.js
+│   │   └── fileManager.js
+│   │   └── userConfig.ejs
 │   │   └── _footer.ejs
 │   │   └── _head.ejs
 │   │   └── _header.ejs
@@ -95,19 +102,22 @@ This refined formulation integrates the foundational context and principles for 
 │   └── codeGenerationRoutes.js
 │   └── codeRoute.js
 │   └── errorRoutes.js
+│   └── index.js
+│   └── userRoutes.js
 │   └── welcomeRouter.js
 └── server.js
 ├── services/
 │   └── aiService.js
 │   └── chatInterface.js
+│   └── codeWritingAgent.js
 │   └── routes.js
 ├── src/
 │   └── index.html
-│   └── index.js
-└── TODO
+└── TODO.txt
 └── tsconfig.json
 ├── utils/
 │   └── chatWebSocket.js
+│   └── configValidation.js
 │   └── flashMessages.js
 ├── views/
 │   └── aiAssistant.ejs
@@ -124,10 +134,16 @@ This refined formulation integrates the foundational context and principles for 
 │   │   └── _mainLayout.ejs
 │   │   └── _taskbar.ejs
 │   └── register.ejs
+│   └── userConfig.ejs
 └── webpack.config.js
 
 
 Process finished with exit code 0
+
+
+
+
+
 
 
 

@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -41,5 +41,41 @@ module.exports = {
         }),
         // Add other plugins as needed
     ],
-    // Add resolve and other configurations as previously defined
+    resolve: {
+        fallback: {
+            "http": require.resolve("stream-http"),
+            "zlib": require.resolve("browserify-zlib"),
+            "querystring": require.resolve("querystring-es3"),
+            "crypto": require.resolve("crypto-browserify"),
+            "stream": require.resolve("stream-browserify"),
+            "events": require.resolve("events/"),
+            "url": require.resolve("url/"),
+            "https": require.resolve("https-browserify"),
+            "fs": false,
+            "net": false,
+            "tls": false,
+            "bufferutil": false,
+            "utf-8-validate": false,
+            "async_hooks": false,
+            "vm": require.resolve("vm-browserify"),
+        },
+        alias: {
+            './routes': path.resolve(__dirname, './routes') // Update the path as per your directory structure
+        },
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000,
+        historyApiFallback: true,
+        open: true,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3001',
+                secure: false,
+                changeOrigin: true,
+            },
+        },
+    },
+    // other configurations...
 };

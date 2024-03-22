@@ -1,6 +1,6 @@
-# File: inputValidation.js
-# Location: middleware/
-# Purpose: Middleware for general input validation across different routes.
+// File: inputValidation.js
+// Location: middleware/
+// Purpose: Middleware for general input validation across different routes.
 
 const { body, validationResult } = require('express-validator');
 

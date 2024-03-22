@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('_head.ejs'); %>
-  <body>
+<%- include('_head.ejs'); %>
+<body>
     <%- include('_header.ejs'); %>
     <div class="container mt-4">
       <% if (typeof content !== 'undefined') { %>
@@ -10,6 +10,61 @@
     </div>
     <%- include('_taskbar.ejs'); %>
     <%- include('_footer.ejs'); %>
+
+    <!-- Configuration Modal Placeholder -->
+    <div id="configModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="configForm">
+                <label for="endpoint">API Endpoint:</label>
+                <input type="text" id="endpoint" name="endpoint"><br><br>
+                <label for="token">Access Token:</label>
+                <input type="text" id="token" name="token"><br><br>
+                <input type="submit" value="Save Configuration">
+            </form>
+        </div>
+    </div>
+
     <script src="/js/main.js"></script>
-  </body>
+    <script>
+        // JavaScript for handling the configuration interface goes here
+        document.addEventListener('DOMContentLoaded', () => {
+            const configLink = document.getElementById('config-link');
+            const configModal = document.getElementById('configModal');
+            const closeBtn = document.querySelector('.close');
+
+            if (configLink) {
+                configLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    configModal.style.display = "block";
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.onclick = function() {
+                    configModal.style.display = "none";
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == configModal) {
+                    configModal.style.display = "none";
+                }
+            }
+
+            // Handle configuration form submission
+            document.getElementById('configForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const endpoint = document.getElementById('endpoint').value;
+                const token = document.getElementById('token').value;
+
+                // Here you would save these values to localStorage or send them to your server
+                console.log('Saving configuration', { endpoint, token });
+
+                configModal.style.display = "none";
+            });
+        });
+    </script>
+</body>
 </html>

@@ -3,54 +3,56 @@ const express = require("express");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const helmet = require('helmet');
-const connectDB = require('./databases/mongoDB'); // Correct path according to the directory map
-
-// Importing routes
+const connectDB = require('./databases/mongoDB');
+const userConfigRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const welcomeRouter = require("./routes/welcomeRouter");
 const chatHistoryRoutes = require('./routes/chatHistoryRoutes');
-const chatRoute = require('./routes/chatRoute'); // Assuming you want to include this as well
+const chatRoute = require('./routes/chatRoute');
 const codeGenerationRoutes = require('./routes/codeGenerationRoutes');
 const aiAssistanceRoute = require('./routes/aiAssistanceRoute');
 const errorRoutes = require("./routes/errorRoutes");
-
-// Middleware
 const authMiddleware = require('./middleware/authMiddleware');
 const csrfProtection = require('./middleware/csrfProtection');
 const inputValidation = require('./middleware/inputValidation');
-const rateLimiting = require('./middleware/RateLimiting');
+const rateLimiting = require('./middleware/rateLimiting');
+const chatWebSocket = require('./utils/chatWebSocket');
 
-const chatWebSocket = require('./utils/chatWebSocket'); // WebSocket setup
-
-connectDB(); // Database connection
-
+// Initialize Express app
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(helmet()); // Secure HTTP headers
+// Connect to MongoDB
+connectDB();
+
+// Session middleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.DATABASE_URL }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
 }));
 
+// Apply middleware
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-
-// Applying middleware
-// Note: Adjust middleware application as needed, for example, applying authMiddleware globally or to specific routes
 app.use('/welcome', welcomeRouter);
 app.use('/auth', authRoutes);
-app.use('/chat', [chatHistoryRoutes, chatRoute]); // Combined chat functionality
-app.use('/code', codeGenerationRoutes);
-app.use('/ai', aiAssistanceRoute);
-app.get("/", (req, res) => res.render("index"));
+app.use('/chat', authMiddleware, [chatHistoryRoutes, chatRoute]); // Apply authMiddleware here
+app.use('/code', authMiddleware, codeGenerationRoutes); // Apply authMiddleware here
+app.use('/ai', authMiddleware, aiAssistanceRoute); // Apply authMiddleware here
+
+// Route for the root URL ("/")
+app.get("/", (req, res) => {
+    res.render("index", { session: req.session }); // Passing session to index view
+});
+
 app.use(errorRoutes);
 
-// Error handling and not found
+// Error handling
 app.use((req, res, next) => {
     res.status(404).send("404 - Page Not Found");
 });
@@ -62,8 +64,9 @@ app.use((err, req, res, next) => {
 
 // WebSocket for real-time chat
 const httpServer = require('http').createServer(app);
-chatWebSocket(httpServer); // Initialize WebSocket with the server
+chatWebSocket(httpServer);
 
+// Start the server
 httpServer.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 }).on('error', (error) => {

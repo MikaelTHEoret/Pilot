@@ -6,7 +6,7 @@ const welcomeRouter = express.Router();
 
 // Route handler for GET /welcome
 welcomeRouter.get('/', (req, res) => {
-  res.send(welcomeMessage); // Use the imported welcome message
+  res.send(welcomeMessage);// Use the imported welcome message
 });
 
 // Route handler for POST /welcome/ai-assist
@@ -20,7 +20,7 @@ welcomeRouter.post('/ai-assist', (req, res) => {
   // Make API request using Axios
   axios.post('https://api.openai.com/v1/chat/completions', { inputText })
     .then(response => {
-      // Handle successful response
+     //Handle successful response
       res.json(response.data); // Send the response data back to the client
     })
     .catch(error => {
