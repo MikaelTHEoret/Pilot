@@ -1,4 +1,4 @@
-// authGuard.js
+// authMiddleware.js
 const authGuard = (req, res, next) => {
   if (req.session && req.session.userId) {
     next(); // User is authenticated, proceed

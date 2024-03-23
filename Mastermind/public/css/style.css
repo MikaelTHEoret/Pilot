@@ -79,3 +79,41 @@ body {
     font-size: 16px;
     border: none;
 }
+/* Taskbar is fixed to the bottom and appears over other elements */
+.taskbar {
+  position: fixed; /* Stay in place */
+  bottom: 0; /* At the bottom of the page */
+  width: 100%; /* Full width */
+  z-index: 1050; /* Higher than the navbar to appear on top */
+}
+
+/* Ensuring no overlap with the footer */
+footer {
+  padding-bottom: 70px; /* Adjust based on your taskbar height */
+}
+
+/* Button styling within taskbar for ChatBox */
+.taskbar .chatbox-button {
+  background-color: #007bff; /* Bootstrap primary color for consistency */
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  margin-left: 15px; /* Spacing from other elements */
+  cursor: pointer;
+  text-decoration: none; /* Remove underline from link */
+}
+
+/* Ensure the ChatBox button is not hidden */
+.dropdown:hover .dropdown-content,
+.dropdown .dropdown-content.show { /* Added class for manual control */
+  display: block;
+}
+
+/* Added responsiveness to the dropdown */
+@media (max-width: 767px) {
+  .dropdown-content {
+    left: -90px; /* Adjust as needed for mobile view */
+  }
+}

@@ -1,4 +1,4 @@
-# codeFileManagerUI.js content
+//codeFileManagerUI.js content
 
 code_file_manager_ui_js = """
 document.addEventListener('DOMContentLoaded', () => {
