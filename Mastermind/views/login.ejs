@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/_head.ejs') %>
-  <body>
-<%- include('partials/_header.ejs') %>
-    <main role="main">
-      <div class="container mt-5">
-        <h2>Login</h2>
-        <form action="/auth/login" method="POST">
-          <div class="mb-3">
-            <input type="text" name="username" placeholder="Username" required class="form-control">
-          </div>
-          <div class="mb-3">
-            <input type="password" name="password" placeholder="Password" required class="form-control">
-          </div>
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Login</button>
-            Don't have an account? <a href="/auth/register">Register</a>
-          </div>
-        </form>
-      </div>
-    </main>
-  </body>
-<%- include('partials/_footer.ejs') %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form action="/auth/login" method="post">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <!-- Input field for username -->
+      <p>Don't have an account? <a href="/auth/register">Register here</a>.</p>
+      <!-- Link to registration page -->
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <!-- Input field for password -->
+    </div>
+    <!-- CSRF Token (Cross-Site Request Forgery protection) -->
+    <button type="submit">Login</button>
+    <!-- Submit button -->
+  </form>
+</body>
 </html>

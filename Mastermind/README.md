@@ -30,11 +30,11 @@ The app is a web application using Node.js with Express framework. It integrates
 
 ### License
 
-Copyright © 2024.
-
 "C:\Program Files\nodejs\node.exe" C:\Users\Mik\gpt-pilot\workspace\Mastermind\DirectoryMap.js
 └── chromaDb.ipynb
 └── chromadb.py
+├── config/
+│   └── passport.js
 ├── controllers/
 │   └── aiAssistCoding.js
 │   └── aiController.js
@@ -76,6 +76,7 @@ Copyright © 2024.
 │   │   └── codeFileManagerUI.js
 │   │   └── codeSnippetUI.js
 │   │   └── fileManager.js
+│   │   └── main.js
 │   │   └── userConfig.ejs
 │   │   └── _footer.ejs
 │   │   └── _head.ejs
@@ -94,6 +95,7 @@ Copyright © 2024.
 │   └── codeRoute.js
 │   └── errorRoutes.js
 │   └── index.js
+│   └── loginRoutes.js
 │   └── userRoutes.js
 │   └── welcomeRouter.js
 └── server.js
@@ -130,5 +132,8 @@ Copyright © 2024.
 
 
 Process finished with exit code 0
+
+
+
 
 
